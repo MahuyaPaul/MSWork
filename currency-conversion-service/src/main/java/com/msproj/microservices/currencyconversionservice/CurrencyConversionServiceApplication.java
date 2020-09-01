@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients ("com.msproj.microservices.currencyconversionservice")
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableHystrixDashboard
 @EnableCircuitBreaker
 public class CurrencyConversionServiceApplication {

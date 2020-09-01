@@ -18,7 +18,7 @@ public class CurrencyExchangeController {
 	@Autowired  
 	private ExchangeValueRepository repository; 
 
-	@GetMapping("/currency-exchange/currency/{currency}") 
+	@RequestMapping(value = "/currency-exchange/currency/{currency}", method = RequestMethod.GET)
 	public ExchangeValue retrieveExchangeValue(@PathVariable String currency) 
 																									
 	{
@@ -30,7 +30,7 @@ public class CurrencyExchangeController {
 	}
 	
 	// -------------------Get Conversion Factor between two currencies---------------------------------------------
-	@GetMapping("/currency-exchange/fromCurrency/{fromCurrency}/toCurrency/{toCurrency}")
+	@RequestMapping(value = "/currency-exchange/fromCurrency/{fromCurrency}/toCurrency/{toCurrency}", method = RequestMethod.GET)
 		public ExchangeValue getConversionFactorBetweenTwoCurrencies(@PathVariable String fromCurrency, @PathVariable String toCurrency) {
 
 			ExchangeValue fromCurrencyEx = repository.findByCurrency(fromCurrency);

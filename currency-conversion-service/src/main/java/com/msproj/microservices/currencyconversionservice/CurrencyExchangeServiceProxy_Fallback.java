@@ -5,10 +5,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 
-/**
- * @author Som
- *
- */
 @Component
 public class CurrencyExchangeServiceProxy_Fallback implements CurrencyExchangeServiceProxy {
 	
@@ -16,7 +12,7 @@ public class CurrencyExchangeServiceProxy_Fallback implements CurrencyExchangeSe
 	private Environment environment;
 
 	@Override
-	public CurrencyExchangeBean getConversionFactor(String countryCode) {
+	public CurrencyExchangeBean retrieveExchangeValue(String currency) {
 		System.out.println("getConversionFactor :: Returning default fallback conversionFactor value : 0.0");
 		CurrencyExchangeBean defaultValues = new CurrencyExchangeBean();
 		defaultValues.setId(null);

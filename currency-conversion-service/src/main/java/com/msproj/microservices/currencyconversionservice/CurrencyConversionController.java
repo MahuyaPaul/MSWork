@@ -41,7 +41,7 @@ public class CurrencyConversionController {
 	@RequestMapping(value = "/currency-exchange/amount/{amount}/currency/{currency}", method = RequestMethod.GET)
 	public CurrencyConversionBean getConversionFactor (@PathVariable Double amount, @PathVariable String currency) {
 		
-		CurrencyExchangeBean forexResponse = proxy.getConversionFactor(currency);
+		CurrencyExchangeBean forexResponse = proxy.retrieveExchangeValue(currency);
 		CurrencyConversionBean conversionResponse = new CurrencyConversionBean();
 		
 		Double finalAmount = forexResponse.getConversionFactor()*amount;
@@ -65,10 +65,15 @@ public class CurrencyConversionController {
 			                                      @PathVariable String toCurrency) {
 		
 		CurrencyConversionBean conversionResponse = new CurrencyConversionBean();
-		CurrencyExchangeBean forexResponse = proxy.getConversionFactorBetweenTwoCurrencies(fromCurrency, toCurrency);		
-		
-		Double finalAmount = forexResponse.getConversionFactor()*amount;		
-		
+		CurrencyExchangeBean forexResponse = proxy.retrieveExchangeValue(fromCurrency);	
+		System.out.println("From factor:" +forexResponse.getConversionFactor());
+		Double fromAmount = forexResponse.getConversionFactor()*amount;		
+		System.out.println("From amount:" +fromAmount);	
+		CurrencyExchangeBean responseTo = proxy.retrieveExchangeValue(toCurrency);	
+		System.out.println("To factor:" +responseTo.getConversionFactor());
+		Double UsdInrVal = 1/responseTo.getConversionFactor();
+		System.out.println("UsdInrVal:" +UsdInrVal);
+		Double finalAmount = UsdInrVal*fromAmount;
 		conversionResponse.setFromCurrency(fromCurrency);
 		conversionResponse.setToCurrency(toCurrency);
 		conversionResponse.setConversionFactor(forexResponse.getConversionFactor());
