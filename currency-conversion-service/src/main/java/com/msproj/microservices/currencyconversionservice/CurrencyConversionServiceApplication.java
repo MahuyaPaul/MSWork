@@ -7,8 +7,8 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients ("com.msproj.microservices.currencyconversionservice")
-//@EnableDiscoveryClient
+@EnableFeignClients //("com.msproj.microservices.currencyconversionservice")
+@EnableDiscoveryClient
 @EnableHystrixDashboard
 @EnableCircuitBreaker
 public class CurrencyConversionServiceApplication {
